@@ -3,7 +3,12 @@ function processData() {
 	let toDisplay = [];
 	for (let i = 0; i < data.length; ++i) {
 		if (data[i]) {
-			toDisplay.push({x: String.fromCharCode(i), value: data[i]});
+			if (String.fromCharCode(i) === ' ') {
+				toDisplay.push({x: '(Space)', value: data[i]});
+			}
+			else {
+				toDisplay.push({x: String.fromCharCode(i), value: data[i]});
+			}
 		}
 	}
 	return toDisplay;
@@ -15,6 +20,11 @@ function generateChart(toDisplay) {
 	chart.labels(true);
 	chart.container('chart');
 	chart.draw();
+}
+
+function displayTotal() {
+	let totalCount = JSON.parse(document.getElementById('totalCount').innerHTML);
+	document.getElementById('total').innerHTML = "Total characters counted: " + totalCount;
 }
 
 function generateTable(toDisplay) {
@@ -35,5 +45,6 @@ function generateTable(toDisplay) {
 function displayOutput() {
 	let toDisplay = processData();
 	generateChart(toDisplay);
+	displayTotal();
 	generateTable(toDisplay);
 }

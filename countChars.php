@@ -10,12 +10,17 @@
 		foreach($inputExc as $item) {
 			$hashTab[ord($item)] = 0;
 		}
+		$totalCount = 0;
+		foreach($hashTab as $item) {
+			$totalCount += $item;
+		}
 
 		$output = json_encode($hashTab);
+		$countJSON = json_encode($totalCount);
 
 		echo "<br>";
 		echo "<p hidden id='countOutput'>$output</p>";
-
+		echo "<p hidden id='totalCount'>$countJSON</p>";
 	}
 
 	if (isset($_POST["subButton"])) {
